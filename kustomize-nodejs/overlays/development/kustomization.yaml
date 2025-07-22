@@ -1,0 +1,18 @@
+resources:
+- ../../base
+# namePrefix: development-
+patches:
+  - target:
+      kind: Deployment
+      name: nodejs-app
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: development-nodejs-app
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: development
+      - op: replace
+        path: /spec/replicas
+        value: 2
+
